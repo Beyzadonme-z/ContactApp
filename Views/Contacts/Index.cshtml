@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Contact> //Contact a ctrl yapıp basınca bilgiler çıkıyorsa doğru tanımlanmıştır.
+<h1>Index @Model.Count()</h1>
+
+<div class="table-responsible">
+	<table class="table table-hover align-middle">
+		<thead> 
+			<tr>
+				<th>Ad</th>
+				<th>Soyadı</th>
+				<th>Eposta</th>
+				<th>Telefon</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(Contact c in Model){
+				<tr>
+					<td>@c.FirstName</td>
+					<td>@c.LastName</td>
+					<td>@c.Email</td>
+					<td>@c.Phone</td>
+					<td></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
