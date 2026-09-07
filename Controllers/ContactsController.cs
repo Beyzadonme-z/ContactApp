@@ -21,8 +21,18 @@ namespace ContactApp.Controllers
         }
         public IActionResult Details(int id)
         {
-            return View();
+            var contact=_repo.GetById(id);
+            if(contact is null)
+                return NotFoundView();
+            ViewData["Title"] = "Kişi Güncelle";
+            return View(contact);
         }
+
+        private IActionResult NotFoundView()
+        {
+            throw new NotImplementedException();
+        }
+
         public IActionResult Create(int id)
         {
             return View();
