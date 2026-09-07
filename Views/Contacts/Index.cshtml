@@ -19,7 +19,10 @@
 					<td>@c.LastName</td>
 					<td>@c.Email</td>
 					<td>@c.Phone</td>
-					<td></td>
+					<td>class="Text-end"
+						<a asp-action="Details" asp-controller="Contacts" asp-route-id="@c.Id">Detay</a> 
+					</td>
+					
 				</tr>
 			}
 		</tbody>

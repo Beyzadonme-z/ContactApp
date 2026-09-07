@@ -12,7 +12,8 @@ public class InMemoryContactRepository : IContactRepository
 
         //seed data(çekirdek)
         var seed = new List<Contact>()
-        {//nesne Tanımları veriyorum. Çekirdek datalar
+        {  
+            //nesne Tanımları veriyorum. Çekirdek datalar
             new Contact(){FirstName="Ahmet",LastName="Yılmaz",Email="ahmetyilmaz@example.com",Phone="+90565225552", Company="BTK Akademi",Title="Yazılım Geliştirme Uzmanı", Notes=".NET"},
             new (){FirstName="Beyza",LastName="Dönmez",Email="beyzadonmez@example.com",Phone="+90554222252", Company="BTK Akademi",Title="Yazılımcı", Notes="C#"},
             new (){FirstName="Ali",LastName="Yıl",Email="aliyil@example.com",Phone="+90565227772", Company="BTK Akademi",Title="Bilgisayar programcısı", Notes="Donanım"},
