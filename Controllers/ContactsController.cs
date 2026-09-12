@@ -30,7 +30,10 @@ namespace ContactApp.Controllers
 
         private IActionResult NotFoundView()
         {
-            throw new NotImplementedException();
+            Response.StatusCode = 404;
+            ViewData["Title"] = "Bulunamadı";
+            ViewBag.Message = "Kişi bulunamadı.";
+            return View("NotFound");
         }
 
         public IActionResult Create(int id)
