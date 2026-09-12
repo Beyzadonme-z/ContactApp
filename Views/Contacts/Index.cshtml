@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<Contact> //Contact a ctrl yapıp basınca bilgiler çıkıyorsa doğru tanımlanmıştır.
 <h1>Index @Model.Count()</h1>
 
+<div class="col-auto ms-auto">
+	<a asp-action="Create" class="btn btn-success">+ Yeni Kişi</a>
+</div>
+
 <div class="table-responsible">
 	<table class="table table-hover align-middle">
 		<thead> 

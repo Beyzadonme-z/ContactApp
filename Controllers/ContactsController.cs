@@ -1,4 +1,5 @@
-﻿using ContactApp.Services;
+﻿using ContactApp.Models;
+using ContactApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactApp.Controllers
@@ -35,11 +36,19 @@ namespace ContactApp.Controllers
             ViewBag.Message = "Kişi bulunamadı.";
             return View("NotFound");
         }
-
-        public IActionResult Create(int id)
+        
+        public IActionResult Create()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Create(Contact model)
+        {
+            return View();
+        }
+
+
+
         public IActionResult Edit(int id)
         {
             return View();
