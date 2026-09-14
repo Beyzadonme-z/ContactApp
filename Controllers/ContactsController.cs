@@ -39,9 +39,11 @@ namespace ContactApp.Controllers
         
         public IActionResult Create()
         {
-            return View();
+            ViewData["Title"] = "Yeni Kişi";
+            return View(new Contact());
         }
-        [HttpPost]
+        [HttpPost("create")]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Contact model)
         {
             return View();
