@@ -36,7 +36,7 @@ namespace ContactApp.Controllers
             ViewBag.Message = "Kişi bulunamadı.";
             return View("NotFound");
         }
-        
+        [HttpGet("create")]
         public IActionResult Create()
         {
             ViewData["Title"] = "Yeni Kişi";
@@ -44,9 +44,17 @@ namespace ContactApp.Controllers
         }
         [HttpPost("create")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Contact model)
+        public IActionResult Create(Contact contact)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                ViewData["Title"] = "Yeni Kişi";
+                return View(contact);
+            }
+            _repo.Add(contact);
+            _logger.LogInformation($"Kişi eklendi: {contact.Id} {contact.FirstName} {contact.LastName}");
+            TempData["Success"] = "Kayıt eklendi";
+            return RedirectToAction(nameof(Index));
         }
 
 
