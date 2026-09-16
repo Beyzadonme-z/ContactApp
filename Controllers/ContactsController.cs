@@ -58,10 +58,14 @@ namespace ContactApp.Controllers
         }
 
 
-
+        [HttpGet("edit/{id}")]
         public IActionResult Edit(int id)
         {
-            return View();
+            var contact=_repo.GetById(id);
+            if(contact is null)
+               return NotFoundView();
+            ViewData["Title"] = "Kişi Görüntüleme";
+            return View(contact);
         }
         public IActionResult Delete(int id)
         {
