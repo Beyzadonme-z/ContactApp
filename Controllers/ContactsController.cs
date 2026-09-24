@@ -67,6 +67,26 @@ namespace ContactApp.Controllers
             ViewData["Title"] = "Kişi Görüntüleme";
             return View(contact);
         }
+        [HttpPost("edit/{id}")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Contact contact)
+        {
+            if (id != contact.Id)
+            {
+                ModelState.AddModelError(string.Empty, "Geçersiz istek!");
+            }
+            if (!ModelState.IsValid)
+            {
+                ViewData["Title"] = "Kişi Güncelle";
+                return View(contact);
+            }
+            var ok=_repo.Update(contact);
+            if(!ok)
+                return NotFoundView();
+            _logger.LogInformation($"Kişi güncellendi. Id: {contact.Id} {contact.FirstName} {contact.LastName}");
+            TempData["Success"] = "Kayıt güncellendi.";
+            return RedirectToAction(nameof(Index));
+        }
         public IActionResult Delete(int id)
         {
             return View();
