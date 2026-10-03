@@ -87,10 +87,26 @@ namespace ContactApp.Controllers
             TempData["Success"] = "Kayıt güncellendi.";
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            return View();
+            var contact=_repo.GetById(id);
+            if (contact is null)
+                return NotFoundView();
+            ViewData["Title"] = "Silme Onayı";
+            return View(contact);
         }
-
+        [HttpPost("delete/{id}")]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var ok = _repo.Delete(id);
+            if(!ok)
+                return NotFoundView();
+            TempData["Success"] = "Kayıt silindi.";
+            return RedirectToAction(nameof(Index));
+        }
+        
     }
 }
