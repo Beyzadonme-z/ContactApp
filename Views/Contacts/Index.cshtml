@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Contact> //Contact a ctrl yapıp basınca bilgiler çıkıyorsa doğru tanımlanmıştır.
 <h1>Index @Model.Count()</h1>
-<form method="get" asp-controller="Contracts" asp-action="Index" class="row g-2 mb-3">
+<form method="get" asp-controller="Contacts" asp-action="Index" class="row g-2 mb-3">
 	<div class="col-sm-8 col-md-6 col-lg-4">
 		<input type="text" name="q" value="@((string?)ViewBag.Query)" class="form-control" placeholder="Arama yapabilirsiniz"/>
 	</div>

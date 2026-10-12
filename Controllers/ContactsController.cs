@@ -14,10 +14,20 @@ namespace ContactApp.Controllers
             _repo = repo;
             _logger = logger;
         }
-
-        public IActionResult Index()
+        [HttpGet("")]
+        public IActionResult Index(string? q)
         {
             var items = _repo.GetAll();
+            if(!string.IsNullOrEmpty(q))
+            {
+                var term=q.Trim();
+                items = items.Where(c => (c.FirstName + " " + c.LastName).Contains(term, StringComparison.CurrentCultureIgnoreCase)
+                || c.FirstName.Contains(term, StringComparison.CurrentCultureIgnoreCase)
+                || c.LastName.Contains(term, StringComparison.CurrentCultureIgnoreCase));
+            }
+            ViewData["Title"] = "Kişiler";
+            ViewBag.Query = q;
+
             return View(items.ToList());
         }
         public IActionResult Details(int id)
